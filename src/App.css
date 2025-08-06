@@ -13,6 +13,14 @@
   }
 }
 
+.list-group-item {
+  transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
