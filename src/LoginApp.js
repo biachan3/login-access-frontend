@@ -9,7 +9,7 @@ function LoginApp({ onLoginSuccess }) {
     const [password, setPassword] = useState('');
     const [roles, setRoles] = useState([]);
     const [selectedRole, setSelectedRole] = useState(null);
-    const [tempToken, setTempToken] = useState(null); // simpan token sementara untuk decode user_id
+    const [tempToken, setTempToken] = useState(null);
 
     const handleLogin = async () => {
         try {
@@ -22,7 +22,7 @@ function LoginApp({ onLoginSuccess }) {
                 onLoginSuccess(res.data.token);
             } else if (res.data.roles && res.data.tempToken) {
                 setRoles(res.data.roles);
-                setTempToken(res.data.tempToken); // simpan untuk digunakan saat select-role
+                setTempToken(res.data.tempToken);
             }
         } catch (err) {
             alert('Login failed');
@@ -32,7 +32,7 @@ function LoginApp({ onLoginSuccess }) {
 
     const handleRoleSelect = async () => {
         try {
-            const decoded = jwtDecode(tempToken); // ambil user_id dari tempToken
+            const decoded = jwtDecode(tempToken);
             const res = await axios.post('http://localhost:3000/auth/select-role', {
                 user_id: decoded.user_id,
                 selected_role_id: selectedRole
